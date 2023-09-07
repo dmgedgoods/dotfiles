@@ -4,7 +4,7 @@
 
 sudo apt update && sudo apt upgrade -y
 
-sudo apt-get install -y curl zsh firefox git gh gcc python3.10-venv
+sudo apt-get install -y curl zsh firefox git gh gcc python3.10-venv pip3 openjdk-17-jre
 
 cd /opt
 sudo wget https://github.com/neovim/neovim/releases/latest/download/nvim-linux64.tar.gz

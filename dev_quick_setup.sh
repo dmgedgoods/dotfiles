@@ -1,8 +1,10 @@
 #!/bin/bash
 
+## After everything is done, source packer.lua, :PackerSync and you should be g2g
+
 sudo apt update && sudo apt upgrade -y
 
-sudo apt-get install -y curl zsh firefox git gh gcc 
+sudo apt-get install -y curl zsh firefox git gh gcc python3.10-venv
 
 cd /opt
 sudo wget https://github.com/neovim/neovim/releases/latest/download/nvim-linux64.tar.gz
@@ -28,4 +30,4 @@ curl -fsSL https://raw.githubusercontent.com/ohmyzsh/ohmyzsh/master/tools/instal
 chsh -s $(which zsh)
 zsh
 
-echo "source packer.lua, :PackerSync, get to work!"
+

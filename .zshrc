@@ -77,13 +77,13 @@ md5() {
 ##### TMUX options
 
 tsa() {
-	status_bar=$(cat $TMUX_STATUS_BAR)
+	status_bar=$(cat $TMUX_SATUS_BAR)
 	tmux set-option -g status-right "$1 $status_bar"
-	echo "$1 $status_bar" > $TMUX_STATUS_BAR
+	echo "$1 $status_bar" > $TMUX_SATUS_BAR
 }
 
 tsd() {
 	echo '[#{session_name}]' > $TMUX_SATUS_BAR
-	status_bar=$(cat $TMUX_STATUS_BAR)
+	status_bar=$(cat $TMUX_SATUS_BAR)
 	tmux set-option -g status-right "$status_bar"
 }

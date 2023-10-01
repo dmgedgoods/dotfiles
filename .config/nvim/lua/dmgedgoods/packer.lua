@@ -33,12 +33,33 @@ return require('packer').startup(function(use)
         end
     })
     use({
+        'marko-cerovac/material.nvim',
+        as = 'material',
+        config = function()
+            vim.cmd('colorscheme material')
+        end
+    })
+    use({
+        "shaunsingh/nord.nvim",
+        as = 'nord',
+        config = function()
+            vim.cmd('colorscheme nord')
+        end
+    })
+    use({
         "neanias/everforest-nvim",
         as = 'everforest',
         config = function()
             vim.cmd('colorscheme everforest')
         end
-    })    
+    })
+    use({
+        "ellisonleao/gruvbox.nvim",
+        as = 'gruvbox',
+        config = function()
+            vim.cmd('colorscheme gruvbox')
+        end
+    })
     use({
         "catppuccin/nvim",
         as = "catppuccin",

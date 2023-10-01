@@ -33,6 +33,13 @@ return require('packer').startup(function(use)
         end
     })
     use({
+        "neanias/everforest-nvim",
+        as = 'everforest',
+        config = function()
+            vim.cmd('colorscheme everforest')
+        end
+    })    
+    use({
         "catppuccin/nvim",
         as = "catppuccin",
         config = function()

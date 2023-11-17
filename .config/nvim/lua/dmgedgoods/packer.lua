@@ -15,12 +15,12 @@ return require('packer').startup(function(use)
         -- or                            , branch = '0.1.x',
       requires = { { 'nvim-lua/plenary.nvim' } }
     }
---    use {
---        'nvim-tree/nvim-tree.lua',
---        requires = {
---            'nvim-tree/nvim-web-devicons', -- optional
---        },
---    }
+    use {
+        'nvim-tree/nvim-tree.lua',
+        requires = {
+            'nvim-tree/nvim-web-devicons', -- optional
+        },
+    }
     use {
         'nvim-lualine/lualine.nvim',
         requires = { 'nvim-tree/nvim-web-devicons', opt = true }
@@ -33,45 +33,10 @@ return require('packer').startup(function(use)
         end
     })
     use({
-        'marko-cerovac/material.nvim',
-        as = 'material',
-        config = function()
-            vim.cmd('colorscheme material')
-        end
-    })
-    use({
-        "shaunsingh/nord.nvim",
-        as = 'nord',
-        config = function()
-            vim.cmd('colorscheme nord')
-        end
-    })
-    use({
-        "neanias/everforest-nvim",
-        as = 'everforest',
-        config = function()
-            vim.cmd('colorscheme everforest')
-        end
-    })
-    use({
         "ellisonleao/gruvbox.nvim",
         as = 'gruvbox',
         config = function()
             vim.cmd('colorscheme gruvbox')
-        end
-    })
-    use({
-        "catppuccin/nvim",
-        as = "catppuccin",
-        config = function()
-            vim.cmd('colorscheme catppuccin')
-        end
-    })
-    use({
-        "folke/tokyonight.nvim",
-        as = 'tokyonight',
-        config = function()
-            vim.cmd('colorscheme tokyonight')
         end
     })
     use({

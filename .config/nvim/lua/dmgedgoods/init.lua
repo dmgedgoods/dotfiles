@@ -27,13 +27,13 @@ autocmd({"BufWritePre"}, {
     pattern = "*",
     command = [[%s/\s\+$//e]],
 })
+-- disable netrw at the very start of your init.lua
+vim.g.loaded_netrw = 0
+vim.g.loaded_netrwPlugin = 0
 
 vim.g.netrw_browse_split = 0
 vim.g.netrw_banner = 0
 vim.g.netrw_winsize = 15
--- disable netrw at the very start of your init.lua
--- vim.g.loaded_netrw = 0
--- vim.g.loaded_netrwPlugin = 0
 
 -- set termguicolors to enable highlight groups
 vim.opt.termguicolors = true
@@ -42,15 +42,15 @@ vim.opt.termguicolors = true
 -- require("nvim-tree").setup()
 
 -- OR setup with some options
--- require("nvim-tree").setup({
---   sort_by = "case_sensitive",
---   view = {
---     width = 30,
---   },
---   renderer = {
---     group_empty = true,
---   },
---   filters = {
---     dotfiles = true,
---   },
--- })
+require("nvim-tree").setup({
+  sort_by = "case_sensitive",
+  view = {
+    width = 30,
+  },
+  renderer = {
+    group_empty = true,
+  },
+  filters = {
+    dotfiles = false,
+  },
+})

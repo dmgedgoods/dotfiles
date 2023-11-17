@@ -1,12 +1,12 @@
-require('rose-pine').setup({
+require('gruvbox').setup({
     disable_background = true
 })
 
 function ColorMyPencils(color)
-    color = color or "rose-pine"
+    color = color or "gruvbox"
 
-    if color == "rose-pine" then
-        require('rose-pine').setup({
+    if color == "gruvbox" then
+        require('gruvbox').setup({
             disable_background = true
         })
     end

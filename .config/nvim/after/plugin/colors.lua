@@ -23,5 +23,5 @@ function ColorMyPencils(color)
     vim.api.nvim_set_hl(0, "NormalFloat", { bg = "none" })
 end
 
-ColorMyPencils("rose-pine") -- Sets the "rose-pine" theme by default
+ColorMyPencils("gruvbox") -- Sets the "rose-pine" theme by default
 

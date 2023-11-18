@@ -11,15 +11,21 @@ return require('packer').startup(function(use)
     use 'mfussenegger/nvim-jdtls'
 
     use {
-        'nvim-telescope/telescope.nvim', tag = '0.1.0',
+        'nvim-telescope/telescope.nvim', branch = '0.1.x',
         -- or                            , branch = '0.1.x',
       requires = { { 'nvim-lua/plenary.nvim' } }
     }
+--    use {
+--        'nvim-tree/nvim-tree.lua',
+--        requires = {
+--            'nvim-tree/nvim-web-devicons', -- optional
+--        },
+--    }
     use {
-        'nvim-tree/nvim-tree.lua',
-        requires = {
-            'nvim-tree/nvim-web-devicons', -- optional
-        },
+    'stevearc/oil.nvim',
+        opts = {},
+        -- Optional dependencies
+        dependencies = { "nvim-tree/nvim-web-devicons" },
     }
     use {
         'nvim-lualine/lualine.nvim',

@@ -1,6 +1,6 @@
 --Leader stuff
 vim.g.mapleader = " "
-vim.keymap.set("n", "<leader>n", vim.cmd.NvimTreeToggle)
+vim.keymap.set("n", "<leader>n", "<CMD>Oil --float<CR>")
 
 -- CWD just in case
 vim.keymap.set("n", "<leader>cd", [[:cd %:p:h<CR>:pwd<CR>]] )
@@ -17,6 +17,7 @@ vim.keymap.set("v", "J", ":m '>+1<CR>gv=gv")
 
 -- join lines in normal mode
 vim.keymap.set("n", "J", "mzJ`z")
+
 vim.keymap.set("n", "<C-d>", "<C-d>zz")
 vim.keymap.set("n", "<C-u>", "<C-u>zz")
 vim.keymap.set("n", "n", "nzzzv")

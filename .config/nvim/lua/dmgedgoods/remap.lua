@@ -1,6 +1,6 @@
 --Leader stuff
 vim.g.mapleader = " "
-vim.keymap.set("n", "<leader>n", "<CMD>Oil --float<CR>")
+vim.keymap.set("n", "<leader>n", "<CMD>Oil --float<CR>)")
 
 -- CWD just in case
 vim.keymap.set("n", "<leader>cd", [[:cd %:p:h<CR>:pwd<CR>]] )
@@ -24,7 +24,7 @@ vim.keymap.set("n", "n", "nzzzv")
 vim.keymap.set("n", "N", "Nzzzv")
 
 -- reset colorscheem
-vim.keymap.set("n", "<leader>rr", "<cmd>lua ColorMyPencils('gruvbox')<CR>")
+vim.keymap.set("n", "<leader>rr", "<cmd>lua ColorMyPencils('gruvbox')<CR><CMD>so ~/AppData/Local/nvim/lua/dmgedgoods/remap.lua<CR>) ")
 
 -- greatest remap ever
 vim.keymap.set("v", "<leader>p", [["_dP]])
@@ -56,7 +56,7 @@ vim.keymap.set("n", "<leader>j", "<cmd>lprev<CR>zz")
 vim.keymap.set("n", "<leader>s", [[:%s/\<<C-r><C-w>\>/<C-r><C-w>/gI<Left><Left><Left>]])
 vim.keymap.set("n", "<leader>x", "<cmd>!chmod +x %<CR>", { silent = true })
 
-vim.keymap.set("n", "<leader>vpp", "<cmd>e ~/.config/nvim/lua/dmgedgoods/packer.lua<CR>");
+vim.keymap.set("n", "<leader>vpp", "<cmd>e ~/AppData/nvim/lua/dmgedgoods/packer.lua<CR>");
 vim.keymap.set("n", "<leader>mr", "<cmd>CellularAutomaton make_it_rain<CR>");
 
 -- Git stuff

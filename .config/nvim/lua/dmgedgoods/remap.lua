@@ -24,7 +24,7 @@ vim.keymap.set("n", "n", "nzzzv")
 vim.keymap.set("n", "N", "Nzzzv")
 
 -- reset colorscheem
-vim.keymap.set("n", "<leader>rr", "<cmd>lua ColorMyPencils('gruvbox')<CR><CMD>so ~/AppData/Local/nvim/lua/dmgedgoods/remap.lua<CR>) ")
+vim.keymap.set("n", "<leader>rr", "<cmd>lua ColorMyPencils('gruvbox')<CR><CMD>so ~/.config/nvim/lua/dmgedgoods/remap.lua<CR>) ")
 
 -- greatest remap ever
 vim.keymap.set("v", "<leader>p", [["_dP]])

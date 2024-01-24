@@ -43,7 +43,11 @@ require("lazy").setup({
         }
     },
     { "laytan/cloak.nvim" },
-    { "github/copilot.vim" },
+    -- { "github/copilot.vim" },
+    {
+        'Exafunction/codeium.vim',
+        event = 'BufEnter'
+    },
     { "sharkdp/fd" },
     {
         "theprimeagen/harpoon",

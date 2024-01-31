@@ -7,6 +7,7 @@ lsp_installer = require("mason-lspconfig")
 
 local servers = {
     "jsonls",
+    "jdtls",
     "lua_ls",
     "gopls",
     "tsserver",

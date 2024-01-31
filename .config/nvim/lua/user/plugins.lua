@@ -94,16 +94,16 @@ local plugins = {
         },
     },
     { "elentok/format-on-save.nvim" },
-    {
-        "https://git.sr.ht/~whynothugo/lsp_lines.nvim",
-        config = function()
-            require("lsp_lines").setup()
-            -- Disable virtual_text since it's redundant due to lsp_lines.
-            vim.diagnostic.config({
-                virtual_text = false,
-            })
-        end,
-    },
+    --     {
+    --         "https://git.sr.ht/~whynothugo/lsp_lines.nvim",
+    --         config = function()
+    --             require("lsp_lines").setup()
+    --             -- Disable virtual_text since it's redundant due to lsp_lines.
+    --             vim.diagnostic.config({
+    --                 virtual_text = false,
+    --             })
+    --         end,
+    --     },
     { "folke/neodev.nvim",          opts = {} },
     {
         "someone-stole-my-name/yaml-companion.nvim",

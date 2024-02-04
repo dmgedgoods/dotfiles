@@ -54,6 +54,7 @@ local plugins = {
         -- Optional dependencies
         dependencies = { "nvim-tree/nvim-web-devicons" },
     },
+
     -- cmp plugins
     { "hrsh7th/nvim-cmp" },
     { "hrsh7th/cmp-nvim-lsp" },

@@ -28,9 +28,17 @@ vim.g.maplocalleader = " "
 -- Oil
 keymap("n", "<leader>n", "<CMD>Oil --float<CR>)", opts)
 
+-- Fugitive
+-- keymap("n", "<leader>gs", "<CMD>Git<CR>", opts)
+-- keymap("n", "<leader>ga", "<CMD>Git add --all<CR>", opts)
+-- keymap("n", "<leader>gd", "<CMD>Git diff<CR>", opts)
+-- keymap("n", "<leader>gc", "<CMD>Git commit -m 'quick add'<CR>", opts)
+-- keymap("n", "<leader>gp", "<CMD>Git push<CR>", opts)
+-- keymap("n", "<leader>gl", "<CMD>Git log<CR>", opts)
+-- keymap("n", "<leader>gP", "<CMD>Git pull<CR>", opts)
+
 -- TransparentToggle
 keymap("n", "<leader>TT", "<CMD>TransparentToggle<CR>)", opts)
-
 
 -- Resize with arrows
 keymap("n", "<C-Up>", ":resize -2<CR>", opts)

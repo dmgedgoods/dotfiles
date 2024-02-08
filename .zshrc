@@ -4,7 +4,8 @@ export PATH=$HOME/bin:/usr/local/bin:$PATH
 # Path to your oh-my-zsh installation.
 export ZSH="$HOME/.oh-my-zsh"
 export GTK_THEME=Adwaita:dark
-
+export TMUX_CONFIG="~/.config/tmux/tmux.conf"
+TMUX_STATUS_BAR=~/.config/tmux/TMUX_STATUS_BAR
 
 # Theme 
 ZSH_THEME="josh"
@@ -62,16 +63,27 @@ function fugit() {
 #alias gg="git add --all && git commit -m 'quick add' && git push"
 
 # TMUX stuff
-function tsa() {
-	#echo '[#{session_name}]' > $TMUX_STATUS_BAR
-	#status_bar=$(cat $TMUX_STATUS_BAR)
-	tmux set-option -g status-right "$1"
+tsa() {
+	status_bar=$(cat $TMUX_STATUS_BAR)
+	tmux set-option -g status-right "$1 $status_bar"
+	echo "$1 $status_bar" > $TMUX_STATUS_BAR
 }
-function tsd() {
-	#echo '[#{session_name}]' > $TMUX_STATUS_BAR
-	#status_bar=$(cat $TMUX_STATUS_BAR)
-	tmux set-option -g status-right ""
+
+tsd() {
+	echo '[#{session_name}]' > $TMUX_STATUS_BAR
+	status_bar=$(cat $TMUX_STATUS_BAR)
+	tmux set-option -g status-right "$status_bar"
 }
+# function tsa() {
+# 	#echo '[#{session_name}]' > $TMUX_STATUS_BAR
+# 	#status_bar=$(cat $TMUX_STATUS_BAR)
+# 	tmux set-option -g status-right "$1"
+# }
+# function tsd() {
+# 	#echo '[#{session_name}]' > $TMUX_STATUS_BAR
+# 	#status_bar=$(cat $TMUX_STATUS_BAR)
+# 	tmux set-option -g status-right ""
+# }
 
 #alias tmux="TERM=screen-256color-bce tmux"
 alias tdet="tmux detach"

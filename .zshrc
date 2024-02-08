@@ -1,89 +1,90 @@
-export ZSH="$HOME/.oh-my-zsh"
+# If you come from bash you might have to change your $PATH.
+export PATH=$HOME/bin:/usr/local/bin:$PATH
 
-ZSH_THEME="robbyrussell"
-#ZSH_THEME="gozilla"
+# Path to your oh-my-zsh installation.
+export ZSH="$HOME/.oh-my-zsh"
+export GTK_THEME=Adwaita:dark
+
+
+# Theme 
+ZSH_THEME="josh"
+
+# Which plugins would you like to load?
+# Standard plugins can be found in $ZSH/plugins/
+# Custom plugins may be added to $ZSH_CUSTOM/plugins/
+# Example format: plugins=(rails git textmate ruby lighthouse)
+# Add wisely, as too many plugins slow down shell startup.
 plugins=(git)
 
-export TMUX_CONFIG="~/.config/tmux/tmux.conf"
-TMUX_SATUS_BAR=~/.config/tmux/TMUX_STATUS_BAR
+# Autocomplete
+#autoload -Uz compinit && compinit 
 
 source $ZSH/oh-my-zsh.sh
-export PATH=/home/mack/.local/bin:$PATH
 
-alias ll='ls -alhF'
+# User configuration
 
-server() {
-	if [[ $2 ]];then
-		python3 -m http.server $1 --directory $2
-	else
-		python3 -m http.server $1
-	fi
+# export MANPATH="/usr/local/man:$MANPATH"
+
+# You may need to manually set your language environment
+# export LANG=en_US.UTF-8
+
+# Preferred editor for local and remote sessions
+# if [[ -n $SSH_CONNECTION ]]; then
+#   export EDITOR='vim'
+# else
+#   export EDITOR='mvim'
+# fi
+
+# Compilation flags
+# export ARCHFLAGS="-arch x86_64"
+
+# For a full list of active aliases, run `alias`.
+#
+# Example aliases
+# alias zshconfig="mate ~/.zshrc"
+# alias ohmyzsh="mate ~/.oh-my-zsh"
+
+# Basic terminal stuff
+alias ll="ls -l"
+alias c="clear"
+
+# Java stuff
+#alias java="java -cp ~/algs4.jar"
+#alias javac="javac -cp ~/algs4.jar"
+alias java="java -cp ./out"
+alias javac="javac -d ./out"
+
+# Github stuff
+function fugit() {
+    git add --all && git commit -m "$1" && git push
+}
+#alias fugit="fugit"
+#alias gg="git add --all && git commit -m 'quick add' && git push"
+
+# TMUX stuff
+function tsa() {
+	#echo '[#{session_name}]' > $TMUX_STATUS_BAR
+	#status_bar=$(cat $TMUX_STATUS_BAR)
+	tmux set-option -g status-right "$1"
+}
+function tsd() {
+	#echo '[#{session_name}]' > $TMUX_STATUS_BAR
+	#status_bar=$(cat $TMUX_STATUS_BAR)
+	tmux set-option -g status-right ""
+}
+
+#alias tmux="TERM=screen-256color-bce tmux"
+alias tdet="tmux detach"
+alias tat="tmux attach"
+alias tkill="tmux kill-server"
+
+# QOL stuff
+function server() {
+    python3 -m http.server "$1" 
 }
 
 
-vpn-up() {
-	sudo pkill openvpn
-	sudo openvpn /home/mack/Documents/HTB/lab_m0nk3.ovpn
-}
+export NVM_DIR="$HOME/.nvm"
+[ -s "$NVM_DIR/nvm.sh" ] && \. "$NVM_DIR/nvm.sh"  # This loads nvm
+[ -s "$NVM_DIR/bash_completion" ] && \. "$NVM_DIR/bash_completion"  # This loads nvm bash_completion
 
-
-nmap-full() {
-	nmap -p- -sC -sV -A --min-rate=400 --min-parallelism=512 -vv $1
-}
-
-
-ffuf-dir() {
-	ffuf -u $1 -w /usr/share/wordlists/dirb/big.txt ${@: 2};
-}
-
-
-ffuf-vhost() {
-	ffuf -H "Host: FUZZ.$1" -u http://$1 -w /usr/share/wordlists/seclists/Discovery/DNS/subdomains-top1million-20000.txt ${@: 2};
-}
-
-fx() {
-	feroxbuster -u $1 -w /usr/share/wordlists/seclists/Discovery/Web-Content/directory-list-2.3-small.txt ${@: 2};
-}
-
-
-lst(){
-	rlwrap nc -lvnp $1
-}
-
-shell() {
-
-	if [[ $1 ]]; then
-		port=$1
-	else
-		port=9090
-	fi
-
-	stty raw -echo; (echo 'python3 -c "import pty;pty.spawn(\"/bin/bash\")" || python -c "import pty;pty.spawn(\"/bin/bash\")"' ;echo "stty$(stty -a | awk -F ';' '{print $2 $3}' | head -n 1)"; echo reset;cat) | nc -lvnp $port && reset
-
-}
-
-urlencode() {
-        python3 -c "import sys; from urllib.parse import quote; print(quote(sys.stdin.read().strip()));"
-}
-
-urldecode() {
-        python3 -c "import sys; from urllib.parse import unquote; print(unquote(sys.stdin.read().strip()));"
-}
-
-md5() {
-	python3 -c 'import hashlib,sys; print(hashlib.md5(sys.stdin.read().encode()).hexdigest())'
-}
-
-##### TMUX options
-
-tsa() {
-	status_bar=$(cat $TMUX_SATUS_BAR)
-	tmux set-option -g status-right "$1 $status_bar"
-	echo "$1 $status_bar" > $TMUX_SATUS_BAR
-}
-
-tsd() {
-	echo '[#{session_name}]' > $TMUX_SATUS_BAR
-	status_bar=$(cat $TMUX_SATUS_BAR)
-	tmux set-option -g status-right "$status_bar"
-}

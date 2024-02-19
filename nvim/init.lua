@@ -1,23 +1,19 @@
+HOME = os.getenv("HOME")
+
+local lazypath = vim.fn.stdpath("data") .. "/lazy/lazy.nvim"
+if not vim.loop.fs_stat(lazypath) then
+	vim.fn.system({
+		"git",
+		"clone",
+		"--filter=blob:none",
+		"--single-branch",
+		"https://github.com/folke/lazy.nvim.git",
+		lazypath,
+	})
+end
+vim.opt.runtimepath:prepend(lazypath)
+
 require("mack.options")
-require("mack.keymaps")
-require("mack.plugins")
-require("mack.lsp")
-require("mack.colorscheme")
-require("mack.cmp")
-require("mack.telescope")
-require("mack.treesitter")
-require("mack.autopairs")
-require("mack.comment")
-require("mack.gitsigns")
-require("mack.lualine")
-require("mack.toggleterm")
-require("mack.project")
-require("mack.impatient")
-require("mack.indentline")
-require("mack.whichkey")
-require("mack.autocommands")
-require("mack.copilot")
-require("mack.format")
-require("mack.harpoon")
-require("mack.oil")
-require("mack.vimtex")
+require("mack.mappings")
+require("mack.autocmd")
+require("mack.lazy_plugin")

@@ -8,6 +8,8 @@ map <C-c> <Esc>
 """ The Leader Key
 let mapleader=" "
 """ The Status Line and other settings
+set relativenumber
+set number
 set history=1000
 set scrolloff=3
 set incsearch
@@ -144,7 +146,7 @@ nnoremap <leader>bt :action ToggleBookmark<CR>
 nnoremap <leader>bf :action AddToFavorites<CR>
 
 " quick buffer
-nnoremap <leader>b0 :e C:/Users/shawn/.ideavimrc<CR>
+"""nnoremap <leader>b0 :e C:/Users/shawn/.ideavimrc<CR>
 
 " debugger
 noremap <leader>de :action QuickEvaluateExpression<CR>

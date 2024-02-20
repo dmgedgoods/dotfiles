@@ -94,6 +94,8 @@ alias tkill="tmux kill-server"
 function server() {
     python3 -m http.server "$1" 
 }
+alias dev="ssh mack@monke-dev"
+alias rec="ssh mack@monke-recon"
 
 
 export NVM_DIR="$HOME/.nvm"

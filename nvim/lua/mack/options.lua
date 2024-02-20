@@ -5,7 +5,7 @@ local g = vim.g
 g.compatible = 0
 opt.termguicolors = true
 
-opt.mouse = ""
+opt.mouse = "a"
 opt.syntax = "on"
 opt.cmdheight = 0
 opt.laststatus = 3

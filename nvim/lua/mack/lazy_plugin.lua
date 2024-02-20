@@ -1,4 +1,5 @@
 require("lazy").setup("mack.plugins", {
+	spec = {{ import = "lazyvim.plugins.extras.coding.copilot" },},
 	defaults = {
 		lazy = true,
 	},

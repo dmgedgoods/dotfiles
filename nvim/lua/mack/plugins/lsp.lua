@@ -653,7 +653,7 @@ local copilot = {
 		vim.defer_fn(function()
 			require("copilot").setup({
 				panel = {
-					enabled = false,
+					enabled = true,
 					auto_refresh = true,
 					keymap = {
 						jump_prev = "[[",
@@ -699,31 +699,97 @@ local copilot = {
 	end,
 }
 
--- local copilot = {
--- 	"github/copilot.vim",
--- 	event = "VeryLazy",
--- 	init = function()
--- 		vim.g.copilot_no_tab_map = true
--- 		vim.keymap.set("i", "<M-;>", [[copilot#Accept("\<CR>")]], { expr = true, script = true })
--- 	end,
--- }
+--local copilot = {
+--	"github/copilot.vim",
+--	event = "VeryLazy",
+--	init = function()
+--		vim.g.copilot_no_tab_map = true
+--		vim.keymap.set("i", "<M-;>", [[copilot#Accept("\<CR>")]], { expr = true, script = true, replace_keycodes = false })
+--	end,
+--}
 
 local codeium = {
 	"Exafunction/codeium.vim",
+
 	event = "VeryLazy",
 	config = function()
-		vim.keymap.set("i", "<C-;>", function()
+		    local expr_opts = {
+      noremap = true,
+      silent = true,
+      expr = true,
+      -- With expr = true, replace_keycodes is set to true. See https://github.com/orgs/community/discussions/29817
+      -- We need to set it to false to avoid extraneous caracters when accepting a suggestion.
+      replace_keycodes = false,
+    }
+
+    local function getCodeiumCompletions()
+      local status, completion = pcall(function()
+        return vim.api.nvim_eval("b:_codeium_completions.items[b:_codeium_completions.index].completionParts[0].text")
+      end)
+      if status then
+        return completion
+      else
+        return ""
+      end
+    end
+    local function accept_one_line()
+      local text = getCodeiumCompletions()
+      return vim.fn.split(text, [[[\n]\zs]])[1] .. "\n"
+    end
+    local function accept_one_word()
+      local text = getCodeiumCompletions()
+      return vim.fn.split(text, [[\(\w\+\|\W\+\)\zs]])[1]
+    end
+
+    vim.keymap.set("i", "<C-L>", accept_one_line, expr_opts)
+    vim.keymap.set("i", "<C-G><C-L>", accept_one_word, expr_opts)
+		vim.keymap.set("i", "<M-;>", function()
 			return vim.fn["codeium#Accept"]()
 		end, { expr = true, silent = true, noremap = true })
-		vim.keymap.set("i", "<c-,>", function()
+		vim.keymap.set("i", "<M-,>", function()
 			return vim.fn["codeium#CycleCompletions"](1)
 		end, { expr = true, silent = true, noremap = true })
-		vim.keymap.set("i", "<c-.>", function()
+		vim.keymap.set("i", "<M-.>", function()
 			return vim.fn["codeium#CycleCompletions"](-1)
 		end, { expr = true, silent = true, noremap = true })
-		vim.keymap.set("i", "<c-'>", function()
+		vim.keymap.set("i", "<M-'>", function()
 			return vim.fn["codeium#Clear"]()
 		end, { expr = true, silent = true, noremap = true })
+		vim.keymap.set("i", "<M-Space>", function()
+	   local fullCompletion =
+	    -- Word completion
+	    vim.api.nvim_eval("b:_codeium_completions.items[b:_codeium_completions.index].completionParts[0].text")
+	    	local cursor = vim.api.nvim_win_get_cursor(0)
+	    	local line = vim.api.nvim_get_current_line()
+	    	local completion = string.match(fullCompletion, "[ ,;.]*[^ ,;.]+")
+	    	vim.defer_fn(function()
+	    		if string.match(completion, "^\t") then
+	    			vim.api.nvim_buf_set_lines(0, cursor[1], cursor[1], true, { completion })
+	    			vim.api.nvim_win_set_cursor(0, { cursor[1] + 1, #completion })
+	    		else
+	    			local nline = line:sub(0, cursor[2]) .. completion .. line:sub(cursor[2] + 1)
+	    			vim.api.nvim_set_current_line(nline)
+	    			vim.api.nvim_win_set_cursor(0, { cursor[1], cursor[2] + #completion })
+	    		end
+	    	end, 0)
+	    end, { expr = true })
+	    -- Line completion
+	    vim.keymap.set("i", "<M-Enter>", function()
+	    	local fullCompletion =
+	    		vim.api.nvim_eval("b:_codeium_completions.items[b:_codeium_completions.index].completionParts[0].text")
+	    	local cursor = vim.api.nvim_win_get_cursor(0)
+	    	local line = vim.api.nvim_get_current_line()
+	    	local completion = string.gsub(fullCompletion, "\n.*$", "")
+	    	if completion ~= "" then
+	    		vim.defer_fn(function()
+	    			local nline = line:sub(0, cursor[2]) .. completion .. line:sub(cursor[2] + 1)
+	    			vim.api.nvim_set_current_line(nline)
+	    			vim.api.nvim_win_set_cursor(0, { cursor[1], cursor[2] + #completion })
+	    			print("pre enter " .. vim.inspect(cursor))
+	    			vim.api.nvim_feedkeys("\n", "i", true)
+	    		end, 0)
+	    	end
+	    end, { expr = true })
 	end,
 }
 

@@ -70,7 +70,8 @@ CMP.config = function()
 	local luasnip = require("luasnip")
 
 	cmp.setup({
-		-- experimental = {
+		
+		--experimental = {
 		-- 	ghost_text = { hlgroup = "Comment" },
 		-- },
 		snippet = {
@@ -107,6 +108,7 @@ CMP.config = function()
 					fallback()
 				end
 			end, { "i", "s" }),
+			
 
 			["<S-Tab>"] = cmp.mapping(function(fallback)
 				if cmp.visible() then
@@ -133,6 +135,7 @@ CMP.config = function()
 					path = "[Path]",
 					calc = "[Calc]",
 					codeium = "[CDM]",
+					copilot = "[CP]",
 				})[entry.source.name]
 
 				local kind = require("lspkind").cmp_format({
@@ -221,6 +224,7 @@ CMP.config = function()
 			{ name = "cmdline_history" },
 			{ name = "buffer" },
 			{ name = "fuzzy_buffer" },
+			
 		},
 		formatting = {
 			format = function(entry, vim_item)

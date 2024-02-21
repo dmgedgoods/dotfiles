@@ -713,36 +713,6 @@ local codeium = {
 
 	event = "VeryLazy",
 	config = function()
-		    local expr_opts = {
-      noremap = true,
-      silent = true,
-      expr = true,
-      -- With expr = true, replace_keycodes is set to true. See https://github.com/orgs/community/discussions/29817
-      -- We need to set it to false to avoid extraneous caracters when accepting a suggestion.
-      replace_keycodes = false,
-    }
-
-    local function getCodeiumCompletions()
-      local status, completion = pcall(function()
-        return vim.api.nvim_eval("b:_codeium_completions.items[b:_codeium_completions.index].completionParts[0].text")
-      end)
-      if status then
-        return completion
-      else
-        return ""
-      end
-    end
-    local function accept_one_line()
-      local text = getCodeiumCompletions()
-      return vim.fn.split(text, [[[\n]\zs]])[1] .. "\n"
-    end
-    local function accept_one_word()
-      local text = getCodeiumCompletions()
-      return vim.fn.split(text, [[\(\w\+\|\W\+\)\zs]])[1]
-    end
-
-    vim.keymap.set("i", "<C-L>", accept_one_line, expr_opts)
-    vim.keymap.set("i", "<C-G><C-L>", accept_one_word, expr_opts)
 		vim.keymap.set("i", "<M-;>", function()
 			return vim.fn["codeium#Accept"]()
 		end, { expr = true, silent = true, noremap = true })
@@ -755,7 +725,8 @@ local codeium = {
 		vim.keymap.set("i", "<M-'>", function()
 			return vim.fn["codeium#Clear"]()
 		end, { expr = true, silent = true, noremap = true })
-		vim.keymap.set("i", "<M-Space>", function()
+		vim.keymap.set("i", "<M-]>", function()
+
 	   local fullCompletion =
 	    -- Word completion
 	    vim.api.nvim_eval("b:_codeium_completions.items[b:_codeium_completions.index].completionParts[0].text")
@@ -774,7 +745,7 @@ local codeium = {
 	    	end, 0)
 	    end, { expr = true })
 	    -- Line completion
-	    vim.keymap.set("i", "<M-Enter>", function()
+	    vim.keymap.set("i", "<M-[>", function()
 	    	local fullCompletion =
 	    		vim.api.nvim_eval("b:_codeium_completions.items[b:_codeium_completions.index].completionParts[0].text")
 	    	local cursor = vim.api.nvim_win_get_cursor(0)

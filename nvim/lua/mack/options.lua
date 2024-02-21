@@ -44,7 +44,7 @@ opt.history = 2000
 opt.ttimeoutlen = 0
 opt.belloff = "all"
 opt.conceallevel = 0
-opt.updatetime = 500
+opt.updatetime = 50
 opt.wildmenu = true
 opt.scrollback = 2000
 
@@ -57,7 +57,7 @@ opt.completeopt = { "menu", "menuone", "noselect" }
 
 -- buffer settings
 opt.autoread = true
-opt.confirm = true
+opt.confirm = false
 opt.hidden = true
 
 -- coding settings

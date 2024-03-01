@@ -4,7 +4,7 @@ vim.notify = require("notify")
 
 require("notify").setup({
 	-- Animation style (see below for details)
-	stages = "slide",
+	stages = "fade",
 
 	-- Function called when a new window is opened, use for changing win settings/config
 	on_open = nil,
@@ -13,7 +13,7 @@ require("notify").setup({
 	on_close = nil,
 
 	-- Render function for notifications. See notify-render()
-	render = "default",
+	render = "minimal",
 
 	-- Default timeout for notifications
 	timeout = 1000,

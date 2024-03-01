@@ -12,9 +12,17 @@ end
 vim.opt.rtp:prepend(lazypath)
 plugins = {
 	{ "nvim-lua/plenary.nvim" },
-	{ "kyazdani42/nvim-web-devicons" },
 	{
-		"ellisonleao/gruvbox.nvim", priority = 1000 , config = true, opts = ...
+		'xiyaowong/transparent.nvim'
+	},
+	{
+		 'ellisonleao/gruvbox.nvim'
+	},
+--	{
+--		"ellisonleao/gruvbox.nvim", priority = 1000 , config = true, opts = ...
+--	},
+	{
+		"github/copilot.vim",
 	},
 	{
   'stevearc/oil.nvim',
@@ -48,21 +56,21 @@ plugins = {
 			require("plugins.lualine")
 		end,
 	},
-	{
-		"akinsho/bufferline.nvim",
-		lazy = false,
-		keys = {
-			{ "<Tab>",       "<cmd>BufferLineCycleNext<CR>" },
-			{ "<S-Tab>",     "<cmd>BufferLineCyclePrev<CR>" },
-			{ "<leader>bp",  "<cmd>BufferLinePick<CR>" },
-			{ "<leader>bpc", "<cmd>BufferLinePickClose<CR>" },
-			{ "<C-m><C-n>",  "<cmd> BufferLineMoveNext<CR>" },
-			{ "<C-m><C-p>",  "<cmd> BufferLineMovePrev<CR>" },
-		},
-		config = function()
-			require("bufferline").setup()
-		end,
-	},
+--	{
+--		"akinsho/bufferline.nvim",
+--		lazy = false,
+--		keys = {
+--			{ "<Tab>",       "<cmd>BufferLineCycleNext<CR>" },
+--			{ "<S-Tab>",     "<cmd>BufferLineCyclePrev<CR>" },
+--			{ "<leader>bp",  "<cmd>BufferLinePick<CR>" },
+--			{ "<leader>bpc", "<cmd>BufferLinePickClose<CR>" },
+--			{ "<C-m><C-n>",  "<cmd> BufferLineMoveNext<CR>" },
+--			{ "<C-m><C-p>",  "<cmd> BufferLineMovePrev<CR>" },
+--		},
+--		config = function()
+--			require("bufferline").setup()
+--		end,
+--	},
 	{
 		"tiagovla/scope.nvim",
 		config = function()

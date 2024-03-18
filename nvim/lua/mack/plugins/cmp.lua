@@ -70,7 +70,7 @@ CMP.config = function()
 	local luasnip = require("luasnip")
 
 	cmp.setup({
-		
+		enabled = false;
 		--experimental = {
 		-- 	ghost_text = { hlgroup = "Comment" },
 		-- },

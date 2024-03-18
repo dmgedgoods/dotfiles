@@ -33,7 +33,7 @@ return {
 			persist_size = true,
 			-- direction = "horizontal",
 			close_on_exit = true, -- close the terminal window when the process exits
-			shell = vim.o.shell, -- change the default shell
+			shell = vim.fn.executable "pwsh" == 1 and "pwsh" or "powershell", -- change the default shell
 			-- This field is only relevant if direction is set to 'float'
 			float_opts = {
 				-- The border key is *almost* the same as 'nvim_open_win'

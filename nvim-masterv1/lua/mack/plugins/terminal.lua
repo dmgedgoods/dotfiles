@@ -33,7 +33,7 @@ return {
 			persist_size = true,
 			-- direction = "horizontal",
 			close_on_exit = true, -- close the terminal window when the process exits
-			shell = vim.fn.executable "zsh" == 1 and "zsh" or "zsh", -- change the default shell
+			shell = vim.fn.executable "pwsh" == 1 and "pwsh" or "powershell", -- change the default shell
 			-- This field is only relevant if direction is set to 'float'
 			float_opts = {
 				-- The border key is *almost* the same as 'nvim_open_win'
@@ -101,5 +101,14 @@ return {
 			prompt_end = "❯ ",
 		},
 	},
+	{
+		"mikesmithgh/kitty-scrollback.nvim",
+		enabled = false,
+		lazy = true,
+		cmd = { "KittyScrollbackGenerateKittens", "KittyScrollbackCheckHealth" },
+		event = { "User KittyScrollbackLaunch" },
+		-- version = '*', -- latest stable version, may have breaking changes if major version changed
+		-- version = '^4.0.0', -- pin major version, include fixes and features that do not have breaking changes
+		opts = {},
+	},
 }
-

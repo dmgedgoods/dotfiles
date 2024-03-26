@@ -78,4 +78,3 @@ M.opts = {
 }
 
 return M
-

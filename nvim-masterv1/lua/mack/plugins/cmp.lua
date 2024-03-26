@@ -320,8 +320,18 @@ local LuaSnip = {
 	end,
 }
 
+local haskell_snippets = {
+	"mrcjkb/haskell-snippets.nvim",
+	ft = "haskell",
+	config = function()
+		local ls = require("luasnip")
+		local haskell_snippets = require("haskell-snippets").all
+		ls.add_snippets("haskell", haskell_snippets, { key = "haskell" })
+	end,
+}
+
 return {
 	CMP,
 	LuaSnip,
+	haskell_snippets,
 }
-

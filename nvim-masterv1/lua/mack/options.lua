@@ -9,7 +9,6 @@ opt.termguicolors = true
 opt.mouse = "a"
 opt.syntax = "on"
 opt.cmdheight = 1
-opt.signcolumn = "yes"
 opt.laststatus = 3
 opt.showcmd = true
 opt.cursorline = false
@@ -28,7 +27,7 @@ opt.fillchars = {
 	eob = " ", -- suppress ~ at EndOfBuffer
 	diff = "╱", -- alternatives = ⣿ ░ ─ ╱
 	msgsep = "‾",
-	fold = " ",
+	fold = "⠀",
 	foldopen = "▼",
 	-- foldsep = "│",
 	foldsep = " ",
@@ -38,7 +37,7 @@ opt.fillchars = {
 opt.virtualedit = { "block", "onemore" }
 opt.wrap = false
 opt.linebreak = true
- opt.textwidth = 0
+-- opt.textwidth = 0
 -- opt.wrapmargin =40
 opt.scrolloff = 8
 opt.sidescrolloff = 40
@@ -91,7 +90,6 @@ opt.gp = "rg"
 g.html_indent_autotags = "html,head,body"
 g.markdown_recommended_style = 0
 
-
 --------- fold -----------
 -- local function get_custom_foldtxt_suffix(foldstart)
 -- 	local fold_suffix_str = string.format("  %s [%s lines]", "┉", vim.v.foldend - foldstart + 1)
@@ -125,7 +123,6 @@ o.foldlevelstart = 99
 o.foldenable = true
 opt.foldcolumn = "1"
 vim.opt.foldexpr = "v:lua.vim.treesitter.foldexpr()"
---vim.opt.foldtext = "v:lua.get_foldtext()"
+-- vim.opt.foldtext = "v:lua.get_foldtext()"
 opt.foldmethod = "expr"
 --------- end fold ----------
-

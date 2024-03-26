@@ -37,4 +37,3 @@ require("gruvbox").setup({
 end
 
 return M
-

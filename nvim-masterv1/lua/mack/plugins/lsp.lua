@@ -1,3 +1,14 @@
+-- local border = {
+-- 	{ "", "FloatBorder" },
+-- 	{ "", "FloatBorder" },
+-- 	{ "", "FloatBorder" },
+-- 	{ " ", "FloatBorder" },
+-- 	{ "", "FloatBorder" },
+-- 	{ "", "FloatBorder" },
+-- 	{ "", "FloatBorder" },
+-- 	{ " ", "FloatBorder" },
+-- }
+
 local map = vim.keymap.set
 
 local border = "rounded"
@@ -48,8 +59,8 @@ local set_keymap = function(_, bufnr)
 		buffer = bufnr,
 		expr = true,
 	})
-	-- map({ "n", "x" }, "<leader>ca", require("actions-preview").code_actions)
-	map({ "n", "x" }, "<leader>ca", vim.lsp.buf.code_action, bufopts)
+	map({ "n", "x" }, "<leader>ca", require("actions-preview").code_actions)
+	-- map({ "n", "x" }, "<leader>ca", vim.lsp.buf.code_action, bufopts)
 	map("n", "<leader>f", function()
 		vim.lsp.buf.format({ async = true })
 	end, bufopts)
@@ -250,7 +261,7 @@ local Lspconfig = {
 						globals = { "vim" },
 					},
 					format = {
-						enable = true,
+						enable = false,
 						defaultConfig = {
 							indent_style = "space",
 							indent_size = "2",
@@ -300,29 +311,29 @@ local Lspconfig = {
 		-- 		},
 		-- 	},
 		-- })
-		 require("lspconfig").pyright.setup({
-		 	capabilities = make_capabilities(),
-		 	on_attach = function(client, bufnr)
-		 		set_keymap(client, bufnr)
-		 		set_inlay_hint(client, bufnr)
-		 	end,
-		 	settings = {
-		 		python = {
-		 			analysis = {
-		 				autoSearchPaths = true,
-		 				diagnosticMode = "workspace",
-		 				useLibraryCodeForTypes = true,
-		 			},
-		 		},
-		 	},
-		 })
-		--require("lspconfig").jedi_language_server.setup({
-		--	capabilities = make_capabilities(),
-		--	on_attach = function(client, bufnr)
-		--		set_keymap(client, bufnr)
-		--		set_inlay_hint(client, bufnr)
-		--	end,
-		--})
+		-- require("lspconfig").pyright.setup({
+		-- 	capabilities = make_capabilities(),
+		-- 	on_attach = function(client, bufnr)
+		-- 		set_keymap(client, bufnr)
+		-- 		set_inlay_hint(client, bufnr)
+		-- 	end,
+		-- 	settings = {
+		-- 		python = {
+		-- 			analysis = {
+		-- 				autoSearchPaths = true,
+		-- 				diagnosticMode = "workspace",
+		-- 				useLibraryCodeForTypes = true,
+		-- 			},
+		-- 		},
+		-- 	},
+		-- })
+		require("lspconfig").jedi_language_server.setup({
+			capabilities = make_capabilities(),
+			on_attach = function(client, bufnr)
+				set_keymap(client, bufnr)
+				set_inlay_hint(client, bufnr)
+			end,
+		})
 		-- require("lspconfig").pylyzer.setup({
 		-- 	capabilities = make_capabilities(),
 		-- 	on_attach = function(client, bufnr)
@@ -471,52 +482,52 @@ local java = {
 	end,
 }
 
---local haskell_tools = {
---	"MrcJkb/haskell-tools.nvim",
---	version = "^3",
---	ft = { "haskell", "lhaskell", "cabal", "cabalproject" },
---	init = function()
---		vim.g.haskell_tools = {
---			tools = {
---				repl = {
---					-- 'builtin': Use the simple builtin repl
---					-- 'toggleterm': Use akinsho/toggleterm.nvim
---					handler = "builtin",
---					builtin = {
---						create_repl_window = function(view)
---							return view.create_repl_split({ size = vim.o.lines / 3 })
---						end,
---					},
---				},
---				hover = {
---					-- disable = true,
---					stylize_markdown = true,
---					auto_focus = false,
---				},
---				tags = {
---					enable = false,
---					package_events = { "BufWritePost" },
---				},
---			},
---			hls = {
---				capabilities = make_capabilities(),
---				on_attach = function(client, bufnr)
---					local opts = { noremap = true, silent = true, buffer = bufnr }
---					set_keymap(client, bufnr)
---					set_inlay_hint(client, bufnr)
---					map("n", "<leader>cl", vim.lsp.codelens.run, opts)
---				end,
---				-- single_file_support = true,
---				default_settings = {
---					haskell = {
---						formattingProvider = "ormolu",
---						checkProject = true,
---					},
---				},
---			},
---		}
---	end,
---}
+local haskell_tools = {
+	"MrcJkb/haskell-tools.nvim",
+	version = "^3",
+	ft = { "haskell", "lhaskell", "cabal", "cabalproject" },
+	init = function()
+		vim.g.haskell_tools = {
+			tools = {
+				repl = {
+					-- 'builtin': Use the simple builtin repl
+					-- 'toggleterm': Use akinsho/toggleterm.nvim
+					handler = "builtin",
+					builtin = {
+						create_repl_window = function(view)
+							return view.create_repl_split({ size = vim.o.lines / 3 })
+						end,
+					},
+				},
+				hover = {
+					-- disable = true,
+					stylize_markdown = true,
+					auto_focus = false,
+				},
+				tags = {
+					enable = false,
+					package_events = { "BufWritePost" },
+				},
+			},
+			hls = {
+				capabilities = make_capabilities(),
+				on_attach = function(client, bufnr)
+					local opts = { noremap = true, silent = true, buffer = bufnr }
+					set_keymap(client, bufnr)
+					set_inlay_hint(client, bufnr)
+					map("n", "<leader>cl", vim.lsp.codelens.run, opts)
+				end,
+				-- single_file_support = true,
+				default_settings = {
+					haskell = {
+						formattingProvider = "ormolu",
+						checkProject = true,
+					},
+				},
+			},
+		}
+	end,
+}
 
 local rustaceanvim = {
 	"mrcjkb/rustaceanvim",
@@ -759,11 +770,10 @@ return {
 	Lspconfig,
 	clangd,
 	java,
---	haskell_tools,
+	haskell_tools,
 	rustaceanvim,
 --	null_ls,
 	jsonls,
 --	codeium,
 	copilot,
 }
-

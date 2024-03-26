@@ -1,4 +1,4 @@
-local M = {
+﻿local M = {
 	"nvim-lualine/lualine.nvim",
 	event = "VeryLazy",
 	enabled = true,
@@ -239,4 +239,3 @@ M.config = function()
 end
 
 return M
-

@@ -35,10 +35,11 @@ opt.fillchars = {
 	foldclose = "▶",
 }
 
+opt.clipboard = "unnamedplus"
 opt.virtualedit = { "block", "onemore" }
 opt.wrap = false
 opt.linebreak = true
- opt.textwidth = 0
+opt.textwidth = 0
 -- opt.wrapmargin =40
 opt.scrolloff = 8
 opt.sidescrolloff = 40
@@ -75,7 +76,7 @@ opt.cindent = true
 opt.expandtab = true
 opt.smarttab = true
 opt.tabstop = 4
-opt.softtabstop = -1
+--opt.softtabstop = -1
 opt.shiftwidth = 0
 opt.cinoptions = "g0,(0,l1,n-2"
 opt.backspace = { "indent", "eol", "start" }

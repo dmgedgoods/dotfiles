@@ -1,7 +1,7 @@
 local map = vim.keymap.set
 
 local opts = { noremap = true, silent = true }
-local exopts = { expr = true, silent = true }
+--local exopts = { expr = true, silent = true }
 local fopts = { noremap = false, silent = true }
 
 -- Oil

@@ -11,31 +11,26 @@ local telescope = {
 }
 
 telescope.keys = {
-	{ "<leader><leader>a", "<cmd>Telescope autocommands<cr>", desc = "Autocommands" },
-	{ "<leader><leader>b", "<cmd>Telescope buffers<cr>", desc = "Buffers" },
-	{ "<leader><leader>c", "<cmd>Telescope commands<cr>", desc = "Commands" },
-	{ "<leader><leader>d", "<cmd>Telescope diagnostics<cr>", desc = "Diagnostics" },
-
-	{ "<leader><leader>f", "<cmd>Telescope find_files<cr>", desc = "Find files" },
-	{ "<leader><leader>g", "<cmd>Telescope live_grep<cr>", desc = "Live grep" },
-	{ "<leader><leader>h", "<cmd>Telescope help_tags<cr>", desc = "Help tags" },
-
-	{ "<leader><leader>j", "<cmd>Telescope jumplist<cr>", desc = "jumplist" },
-	{ "<leader><leader>k", "<cmd>Telescope keymaps<cr>", desc = "Keymaps" },
-	{ "<leader><leader>l", "<cmd>Telescope local_list<cr>", desc = "Local list" },
-	{ "<leader><leader>m", "<cmd>Telescope marks<cr>", desc = "Marks" },
-	--{ "<leader><leader>n", "<cmd>Telescope noice<cr>", desc = "Noice" },
-	{ "<leader><leader>o", "<cmd>Telescope frecency<cr>", desc = "Oldfiles" },
-	{ "<leader><leader>p", "<cmd>Telescope projects<cr>", desc = "Projects" },
-	{ "<leader><leader>q", "<cmd>Telescope quickfix<cr>", desc = "Quickfix" },
-	{ "<leader><leader>r", "<cmd>Telescope registers<cr>", desc = "Registers" },
-	--{ "<leader><leader>s", "<cmd>Telescope smart_open<cr>", desc = "Smart open" },
-	{ "<leader><leader>t", "<cmd>Telescope treesitter<cr>", desc = "Treesitter" },
-	{ "<leader><leader>u", "<cmd>Telescope undo<cr>", desc = "Undo" },
-	{ "<leader><leader>v", "<cmd>Telescope vim_options<cr>", desc = "Vim options" },
-
-	{ "<leader><leader>y", "<cmd>Telescope yank_history<cr>", desc = "Yank history" },
-	{ "<leader><leader>z", "<cmd>Telescope zoxide list<cr>", desc = "Zoxide" },
+	{ "<leader>aa", "<cmd>Telescope autocommands<cr>", desc = "Autocommands" },
+	{ "<leader>bb", "<cmd>Telescope buffers<cr>", desc = "Buffers" },
+	{ "<leader>cc", "<cmd>Telescope commands<cr>", desc = "Commands" },
+	{ "<leader>dd", "<cmd>Telescope diagnostics<cr>", desc = "Diagnostics" },
+	{ "<leader>ff", "<cmd>Telescope find_files<cr>", desc = "Find files" },
+	{ "<leader>gg", "<cmd>Telescope live_grep<cr>", desc = "Live grep" },
+	{ "<leader>hh", "<cmd>Telescope help_tags<cr>", desc = "Help tags" },
+	{ "<leader>jj", "<cmd>Telescope jumplist<cr>", desc = "jumplist" },
+	{ "<leader>kk", "<cmd>Telescope keymaps<cr>", desc = "Keymaps" },
+	{ "<leader>ll", "<cmd>Telescope local_list<cr>", desc = "Local list" },
+	{ "<leader>mm", "<cmd>Telescope marks<cr>", desc = "Marks" },
+	{ "<leader>oo", "<cmd>Telescope frecency<cr>", desc = "Oldfiles" },
+	{ "<leader>pp", "<cmd>Telescope projects<cr>", desc = "Projects" },
+	{ "<leader>qq", "<cmd>Telescope quickfix<cr>", desc = "Quickfix" },
+	{ "<leader>rr", "<cmd>Telescope registers<cr>", desc = "Registers" },
+	{ "<leader>tt", "<cmd>Telescope treesitter<cr>", desc = "Treesitter" },
+	{ "<leader>uu", "<cmd>Telescope undo<cr>", desc = "Undo" },
+	{ "<leader>vv", "<cmd>Telescope vim_options<cr>", desc = "Vim options" },
+	{ "<leader>yy", "<cmd>Telescope yank_history<cr>", desc = "Yank history" },
+	{ "<leader>zz", "<cmd>Telescope zoxide list<cr>", desc = "Zoxide" },
 }
 
 telescope.config = function()

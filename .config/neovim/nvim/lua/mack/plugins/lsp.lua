@@ -471,6 +471,13 @@ local java = {
 	end,
 }
 
+local vimtex = {
+    "lervag/vimtex",
+    ft = { "tex" },
+    init = function()
+        vim.g.vimtex_view_method = "skim"
+    end
+}
 --local haskell_tools = {
 --	"MrcJkb/haskell-tools.nvim",
 --	version = "^3",
@@ -758,6 +765,7 @@ return {
 	mason,
 	Lspconfig,
 	clangd,
+    vimtex,
 	java,
 --	haskell_tools,
 	rustaceanvim,

@@ -1,3 +1,14 @@
+
+# pure prompt
+#autoload -U promptinit; promptinit
+#PURE_CMD_MAX_EXEC_TIME=1
+#zstyle :prompt:pure:path color white
+#zstyle :prompt:pure:git:dirty color red
+#zstyle :prompt:pure:user color green
+#zstyle :prompt:pure:host color green
+#zstyle ':prompt:pure:prompt:*' color green
+#prompt pure
+
 # If you come from bash you might have to change your $PATH.
 export PATH=$HOME/bin:/usr/local/bin:$PATH
 export PATH=$HOME/bin:/usr/local/bin:/.local/bin:$PATH
@@ -9,10 +20,14 @@ export GTK_THEME=Adwaita:dark
 export TMUX_CONFIG="~/.config/tmux/tmux.conf"
 TMUX_STATUS_BAR=~/.config/tmux/TMUX_STATUS_BAR
 
+
+
+
 # Theme 
-ZSH_THEME="wezm"
+#ZSH_THEME="wezm"
 #ZSH_THEME="gallois"
 #ZSH_THEME="josh"
+ZSH_THEME="mack"
 
 # Which plugins would you like to load?
 # Standard plugins can be found in $ZSH/plugins/
@@ -90,16 +105,20 @@ tsd() {
 # }
 
 #alias tmux="TERM=screen-256color-bce tmux"
-alias tdet="tmux detach"
-alias tat="tmux attach"
-alias tkill="tmux kill-server"
+alias td="tmux detach"
+alias ta="tmux attach"
+alias tk="tmux kill-server"
 
 # QOL stuff
 function server() {
     python3 -m http.server "$1" 
 }
-alias parrot="ws ssh:mack@parrot"
-alias caesar="ws ssh:mack@caesar"
+alias par="ws ssh:mack@parrot"
+alias cae="ws ssh:mack@caesar"
+alias fed="ws ssh:mack@fedora"
+alias kali="ws ssh:mack@kali"
+alias winblows="ws ssh:mack@winblows"
+alias recon="ws ssh:mack@recon"
 #alias dev="ssh mack@monke-dev"
 #alias rec="ssh mack@monke-recon"
 #alias cdf="cd $(find * -type d | fzf --preview 'batcat --color=always {}')"
@@ -124,7 +143,7 @@ function ws() {
     return # Exit the function after setting up the tmux session with SSH
   fi
 
-  local project_path="$HOME/Work/$1" # Default base directory is ~/Work
+  local project_path="./$1" # Default base directory is ~/Work
 
   # Special cases for different base directories
   if [[ $1 == "HTB" ]]; then

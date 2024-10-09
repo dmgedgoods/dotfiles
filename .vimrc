@@ -32,7 +32,8 @@
  set shortmess+=c
  set formatoptions-=cro
 
- set noerrorbells visualbell t_vb=
+ set noerrorbells
+ set novb
  set noswapfile
  set nobackup
  set undodir=~/.vim/undodir
@@ -86,7 +87,7 @@
 " Viewer options: One may configure the viewer either by specifying a
 "built-in
 " viewer method:
-let g:vimtex_view_method = 'skim'
+let g:vimtex_view_method = 'okular'
 
 " Or with a generic interface:
 " let g:vimtex_view_general_viewer = 'okular'

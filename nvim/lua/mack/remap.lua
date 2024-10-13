@@ -1,6 +1,7 @@
 vim.g.maplocalleader = " "
 vim.g.mapleader = " "
 
+
 vim.keymap.set("n", "<leader>n", "<cmd>Oil<cr>")
 
 vim.keymap.set("v", "J", ":m '>+1<CR>gv=gv")
@@ -59,8 +60,7 @@ vim.keymap.set(
 vim.keymap.set("i", "<C-c>", "<Esc>")
 
 
-vim.keymap.set("n", "<leader>vpp", "<cmd>e ~/.dotfiles/nvim/.config/nvim/lua/theprimeagen/packer.lua<CR>");
-vim.keymap.set("n", "<leader>mr", "<cmd>CellularAutomaton make_it_rain<CR>");
+vim.keymap.set("n", "<leader>vpp", "<cmd>e ~/.dotfiles/nvim/.config/nvim/lua/mack/remap.lua<CR>");
 
 vim.keymap.set("n", "<leader><leader>", function()
     vim.cmd("so")

@@ -33,7 +33,10 @@ return {
         config = function()
             require 'luasnip-latex-snippets'.setup()
             -- or setup({ use_treesitter = true })
-            require("luasnip").config.setup { enable_autosnippets = true }
+            require("luasnip").config.setup {
+                enable_autosnippets = true,
+                store_selection_keys = "<Tab>",
+            }
         end,
     }
 }

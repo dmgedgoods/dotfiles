@@ -15,6 +15,7 @@ return {
 
     config = function()
         local cmp = require('cmp')
+        local luasnip = require('luasnip')
         local cmp_lsp = require("cmp_nvim_lsp")
         local capabilities = vim.tbl_deep_extend(
             "force",
@@ -51,7 +52,6 @@ return {
                     })
                     vim.g.zig_fmt_parse_errors = 0
                     vim.g.zig_fmt_autosave = 0
-
                 end,
                 ["lua_ls"] = function()
                     local lspconfig = require("lspconfig")
@@ -79,11 +79,19 @@ return {
                 end,
             },
             mapping = cmp.mapping.preset.insert({
-                ['<C-p>'] = cmp.mapping.select_prev_item(cmp_select),
-                ['<C-n>'] = cmp.mapping.select_next_item(cmp_select),
-                ['<C-y>'] = cmp.mapping.confirm({ select = true }),
+                ['<S-Tab>'] = cmp.mapping.select_prev_item(cmp_select),
+                ['<Tab>'] = cmp.mapping.select_next_item(cmp_select),
+                ['<Enter>'] = cmp.mapping.confirm({ select = true }),
                 ["<C-Space>"] = cmp.mapping.complete(),
+                ["<Esc>"] = cmp.mapping(function(fallback)
+                    if cmp.visible() then
+                        cmp.abort()
+                    else
+                        fallback()
+                    end
+                end, { 'i', 'c' }),
             }),
+
             sources = cmp.config.sources({
                 { name = 'nvim_lsp' },
                 { name = 'luasnip' }, -- For luasnip users.
@@ -94,6 +102,7 @@ return {
 
         vim.diagnostic.config({
             -- update_in_insert = true,
+            --virtual_text = false,
             float = {
                 focusable = false,
                 style = "minimal",

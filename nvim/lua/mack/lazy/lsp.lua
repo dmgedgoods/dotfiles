@@ -83,7 +83,7 @@ return {
                 ['<Tab>'] = cmp.mapping.select_next_item(cmp_select),
                 ['<Enter>'] = cmp.mapping.confirm({ select = true }),
                 ["<C-Space>"] = cmp.mapping.complete(),
-                ["<Esc>"] = cmp.mapping(function(fallback)
+                ["<C-c>"] = cmp.mapping(function(fallback)
                     if cmp.visible() then
                         cmp.abort()
                     else

@@ -102,6 +102,16 @@ return {
         { key = "=",          mods = "LEADER", action = act.SplitHorizontal { domain = "CurrentPaneDomain" } },
         { key = "z",          mods = "LEADER", action = "TogglePaneZoomState" },
         { key = "c",          mods = "LEADER", action = act { SpawnTab = "CurrentPaneDomain" } },
+        { key = "r",          mods = "LEADER", action = act { PromptInputLine = { 
+							description = 'Enter a new name',
+							action = wezterm.action_callback(function(window, pane, line)
+								if line then
+									window:active_tab():set_title(line)
+								end
+							end),
+							},
+						},
+					},
 
         { key = "h",          mods = "LEADER", action = act.ActivatePaneDirection("Left") },
         { key = "j",          mods = "LEADER", action = act.ActivatePaneDirection("Down") },
@@ -115,15 +125,15 @@ return {
 
         { key = "`",          mods = "LEADER", action = act.ActivateLastTab },
         { key = " ",          mods = "LEADER", action = act.ActivateTabRelative(1) },
-        { key = "1",          mods = "LEADER", action = act { ActivateTab = 0 } },
-        { key = "2",          mods = "LEADER", action = act { ActivateTab = 1 } },
-        { key = "3",          mods = "LEADER", action = act { ActivateTab = 2 } },
-        { key = "4",          mods = "LEADER", action = act { ActivateTab = 3 } },
-        { key = "5",          mods = "LEADER", action = act { ActivateTab = 4 } },
-        { key = "6",          mods = "LEADER", action = act { ActivateTab = 5 } },
-        { key = "7",          mods = "LEADER", action = act { ActivateTab = 6 } },
-        { key = "8",          mods = "LEADER", action = act { ActivateTab = 7 } },
-        { key = "9",          mods = "LEADER", action = act { ActivateTab = 8 } },
+        { key = "1",          mods = "CTRL", action = act { ActivateTab = 0 } },
+        { key = "2",          mods = "CTRL", action = act { ActivateTab = 1 } },
+        { key = "3",          mods = "CTRL", action = act { ActivateTab = 2 } },
+        { key = "4",          mods = "CTRL", action = act { ActivateTab = 3 } },
+        { key = "5",          mods = "CTRL", action = act { ActivateTab = 4 } },
+        { key = "6",          mods = "CTRL", action = act { ActivateTab = 5 } },
+        { key = "7",          mods = "CTRL", action = act { ActivateTab = 6 } },
+        { key = "8",          mods = "CTRL", action = act { ActivateTab = 7 } },
+        { key = "9",          mods = "CTRL", action = act { ActivateTab = 8 } },
         { key = "x",          mods = "LEADER", action = act { CloseCurrentPane = { confirm = true } } },
 
         -- Activate Copy Mode

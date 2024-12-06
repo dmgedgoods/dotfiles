@@ -80,6 +80,7 @@ return {
                 disable_background = true,
                 styles = {
                     italic = true,
+                    transparency = true,
                 },
             })
         end

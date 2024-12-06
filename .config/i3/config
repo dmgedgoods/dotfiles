@@ -145,9 +145,9 @@ bar {
 # i3-gaps
 default_floating_border pixel 2
 gaps inner 2
-gaps outer 4
+gaps outer 2
 
-client.focused  #706b4c #706b4c #706b4c #706b4c
+client.focused  #968ba3 #968ba3 #968ba3 #968ba3
 client.focused_inactive #333333 #333333 #888888
 client.unfocused #333333 #333333 #888888
 client.urgent #900000 #900000 #ffffff
@@ -161,6 +161,9 @@ exec_always --no-startup-id picom -b
 
 # VM Clipboard Fix
 exec_always --no-startup-id ~/.config/i3/clipboard_fix.sh
+
+# keyboard fix
+exec_always --no-startup-id setxkbmap -layout us -option ctrl:swapcaps
 
 # Screen adjustments - Adjust as needed for new screen setups, etc. Use xrandr to justify display parameters
 exec_always --no-startup-id ~/.config/i3/display.sh
@@ -176,7 +179,7 @@ bindsym $mod+P exec flameshot gui
 
 # Set monitor - Adjust per display.sh requirements TODO: roll into display script based on $values
 set $mon1 eDP-1
-set $mon2 DP-1-0.1
+set $mon2 HDMI-1-0
 set $mon3 DP-1-0.2
 
 # Set workspaces to monitors
@@ -184,16 +187,19 @@ workspace 1 output $mon1
 workspace 4 output $mon2
 workspace 7 output $mon3
 workspace 2 output $mon1
-workspace 5 output $mon2 
+workspace 5 output $mon2
 workspace 8 output $mon3
 workspace 3 output $mon1
 workspace 6 output $mon2
 workspace 9 output $mon3
 
-# Lets try to control sound 
-bindsym XF86AudioRaiseVolume exec --no-startup-id pactl set-sink-volume @DEFAULT_SINK@ +1% #increase sound volume
-bindsym XF86AudioLowerVolume exec --no-startup-id pactl set-sink-volume @DEFAULT_SINK@ -1% #decrease sound volume
-bindsym XF86AudioMute exec --no-startup-id pactl set-sink-mute @DEFAULT_SINK@ toggle # mute sound
+# Lets try to control sound
+#bindsym XF86AudioRaiseVolume exec --no-startup-id pactl set-sink-volume @DEFAULT_SINK@ +1% #increase sound volume
+#bindsym XF86AudioLowerVolume exec --no-startup-id pactl set-sink-volume @DEFAULT_SINK@ -1% #decrease sound volume
+#bindsym XF86AudioMute exec --no-startup-id pactl set-sink-mute @DEFAULT_SINK@ toggle # mute sound
+bindsym XF86AudioRaiseVolume exec --no-startup-id amixer set Master 5%+ #increase sound volume
+bindsym XF86AudioLowerVolume exec --no-startup-id amixer set Master 5%- #decrease sound volume
+bindsym XF86AudioMute exec --no-startup-id amixer set Master toggle
 bindsym XF86AudioPlay exec playerctl play-pause # play/pause
 bindsym XF86AudioNext exec playerctl next # next
 bindsym XF86AudioPrev exec playerctl previous # previous

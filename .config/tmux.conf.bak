@@ -1,0 +1,139 @@
+# Remap prefix keys
+unbind C-b
+set-option -g prefix M-a
+bind-key M-a send-prefix
+
+# Terminal quality
+set -g history-limit 100000
+set-option -g base-index 1
+set-option -g renumber-windows on
+set-option -g automatic-rename on
+
+# Get those italics right
+set -g default-terminal "tmux-256color"
+set -ag terminal-overrides ",xterm-256color:RGB"
+
+# Screen spliting
+unbind '"'
+unbind %
+bind v split-window -v
+bind h split-window -h
+
+# Session choosing stuff
+#bind C-j new-window -n "session-switcher" "tmux list-sessions | sed -E 's/:.*$//' | grep -v \"^$(tmux display-message -p '#S')\$\" | fzf --reverse | xargs tmux switch-client -t"
+bind -n C-j display-popup -E "tmux list-sessions | sed -E 's/:.*$//' | grep -v \"^$(tmux display-message -p '#S')\$\" | fzf --reverse | xargs tmux switch-client -t"
+
+# Joining Windows
+bind-key j command-prompt -p "join pane from: "  "join-pane -s '%%'"
+bind-key s command-prompt -p "send pane to: "  "join-pane -t '%%'"
+
+# Awitch panes using Alt-arrow without prefix
+#bind -n M-Left select-pane -L
+#bind -n M-Right select-pane -R
+#bind -n M-Up select-pane -U
+#bind -n M-Down select-pane -D
+
+# Switch panes using Alt-vim keys without prefix
+bind -n C-M-h select-pane -L
+bind -n C-M-l select-pane -R
+bind -n C-M-k select-pane -U
+bind -n C-M-j select-pane -D
+
+# Window navigation
+bind -n M-0 select-window -t :0
+bind -n M-1 select-window -t :1
+bind -n M-2 select-window -t :2
+bind -n M-3 select-window -t :3
+bind -n M-4 select-window -t :4
+bind -n M-5 select-window -t :5
+bind -n M-6 select-window -t :6
+bind -n M-7 select-window -t :7
+bind -n M-8 select-window -t :8
+bind -n M-9 select-window -t :9
+
+# tmux-sessionizer, ftw
+bind -n M-f run-shell "tmux neww ~/.local/bin/scripts/tmux-sessionizer.sh"
+
+# switch sessions quickly
+bind -n M-p switch-client -p
+bind -n M-n switch-client -n
+bind -n M-l switch-client -l
+
+# Precision
+# bind C-t new-session -A -s todo "cd ~/work/todo && nvim -O backlog.md doing.md done.md"
+# bind -n M-i new-session -A -s ww3 "cd ~/work/notes/ && nvim"
+# bind -n M-o new-session -A -s <LOCATION IN PROJECT FOLDER> "cd <PROJECT FOLDER> && nvim"
+
+# Scratch pad
+# open a popup scratchpad
+bind -n M-g display-popup -E "tmux new-session -A -s scratch"
+
+# Syntronize panes - send command to all panes
+bind-key g set-window-option synchronize-panes\; display-message "synchronize-panes is now #{?pane_synchronized,on,off}"
+
+# Resize panes with VIM nav keys
+#bind -n C-M-h resize-pane -L
+#bind -n C-M-j resize-pane -D
+#bind -n C-M-k resize-pane -U
+#bind -n C-M-l resize-pane -R
+
+# Move panes inside the same windows
+unbind-key '{'
+unbind-key '}'
+bind-key S-Up swap-pane -U
+bind-key S-Down swap-pane -D
+
+# Set the layout
+bind-key l select-layout main-vertical
+bind-key V select-layout even-vertical
+bind-key H select-layout even-horizontal
+
+### Status bar customization
+set-option -g status-style bg=color235,fg=color244
+#set-option -g status-style bg=color235,fg=color153
+set-option -g status-left ''
+set-option -g status-right '[#{session_name}]'
+set-option -g window-status-format '#I:#W'
+set-option -g window-status-current-format '#[bold, fg=white]#I:#W'
+
+# set vi copy commands
+setw -g mode-keys vi
+bind -T copy-mode-vi v send-keys -X begin-selection
+bind -T copy-mode-vi y send-keys -X copy-pipe-and-cancel 'xclip -in -selection clipboard'
+
+# Changes in terminal borders
+set -g pane-active-border-style fg="cyan"
+
+# set  right status bar lenght to 200
+set-option -g status-right-length 200
+
+### Misc
+
+# Reload config file (change file location to your the tmux.conf you want to use)
+bind r source-file ~/.config/tmux/tmux.conf \; display-message " Config updated successfully!"
+
+# set mouse on
+unbind m
+bind-key m set-option mouse \; display-message "mouse is now  #{?mouse,on,off}"
+
+# message stuff
+
+
+
+
+# List of plugins
+set -g @plugin 'tmux-plugins/tpm'
+set -g @plugin 'tmux-plugins/tmux-sensible'
+#set -g @plugin 'catppuccin/tmux'
+#set -g @catppuccin_flavour 'mocha' # or frappe, macchiato, mocha
+#set -g @plugin 'egel/tmux-gruvbox'
+#set -g @tmux-gruvbox 'dark' # or 'light'
+#set -g @plugin "janoamaral/tokyo-night-tmux"
+# Other examples:
+# set -g @plugin 'github_username/plugin_name'
+# set -g @plugin 'github_username/plugin_name#branch'
+# set -g @plugin 'git@github.com:user/plugin'
+# set -g @plugin 'git@bitbucket.com:user/plugin'
+
+# Initialize TMUX plugin manager (keep this line at the very bottom of tmux.conf)
+run '~/.tmux/plugins/tpm/tpm'

@@ -1,6 +1,7 @@
 local wezterm = require 'wezterm';
 local act = wezterm.action
 --local config = wezterm.config_builder()
+local ssh_connections = dofile(wezterm.config_dir .. "/ssh_connections.lua")
 local SOLID_LEFT_ARROW = wezterm.nerdfonts.pl_right_hard_divider
 local SOLID_RIGHT_ARROW = wezterm.nerdfonts.pl_left_hard_divider
 function tab_title(tab_info)
@@ -11,60 +12,86 @@ function tab_title(tab_info)
     return tab_info.active_pane.title
 end
 
-wezterm.on(
-    'format-tab-title',
-    function(tab, tabs, panes, config, hover, max_width)
-        local edge_background = '#0b0022'
-        local background = '#1d2021'
-        local foreground = '#a89984'
-        if tab.is_active then
-            background = '#3c3836'
-            foreground = '#fbf1c7'
-        elseif hover then
-            background = '#1d2021'
-            foreground = '#ebdbb2'
-        end
-        local edge_foreground = background
-        local title = tab_title(tab)
-        title = wezterm.truncate_right(title, max_width - 2)
+wezterm.on('format-tab-title', function(tab, tabs, panes, config, hover, max_width)
+  -- Construct the tab title
+  local tab_title_text = string.format("[%d] %s ", tab.tab_index + 1, tab_title(tab))
 
-        return {
-            { Background = { Color = edge_background } },
-            { Foreground = { Color = edge_foreground } },
-            { Text = SOLID_LEFT_ARROW },
-            { Background = { Color = background } },
-            { Foreground = { Color = foreground } },
-            { Text = title },
-            { Background = { Color = edge_background } },
-            { Foreground = { Color = edge_foreground } },
-            { Text = SOLID_RIGHT_ARROW },
-        }
-    end
-)
+  -- Return the formatted tab with colors
+  return {
+    { Text = tab_title_text }
+  }
+end)
+--wezterm.on(
+--    'format-tab-title',
+--    function(tab, tabs, panes, config, hover, max_width)
+--        --local edge_background = '#0b0022'
+--        --local background = '#1d2021'
+--        --local foreground = '#a89984'
+--        --if tab.is_active then
+--        --    background = '#3c3836'
+--        --    foreground = '#fbf1c7'
+--        --elseif hover then
+--        --    background = '#1d2021'
+--        --    foreground = '#ebdbb2'
+--        --end
+--        local edge_background = '#191724' -- Rose Pine Base
+--        local background = '#1f1d2e'      -- Rose Pine Surface
+--        local foreground = '#e0def4'      -- Rose Pine Text
+--
+--        if tab.is_active then
+--            background = '#403d52' -- Rose Pine Highlight Med
+--            foreground = '#e0def4' -- Rose Pine Text
+--        elseif hover then
+--            background = '#26233a' -- Rose Pine Overlay
+--            foreground = '#908caa' -- Rose Pine Subtle
+--        end
+--
+--        local edge_foreground = background
+--        local title = tab_title(tab)
+--        title = wezterm.truncate_right(title, max_width - 2)
+--
+--        return {
+--            { Background = { Color = edge_background } },
+--            { Foreground = { Color = edge_foreground } },
+--            { Text = SOLID_LEFT_ARROW },
+--            { Background = { Color = background } },
+--            { Foreground = { Color = foreground } },
+--            { Text = title },
+--            { Background = { Color = edge_background } },
+--            { Foreground = { Color = edge_foreground } },
+--            { Text = SOLID_RIGHT_ARROW },
+--        }
+--    end
+--)
 
 return {
-    --default_prog = { 'C:\\Program Files\\PowerShell\\7\\pwsh.exe' },
-    window_close_confirmation = 'NeverPrompt',
-    font_size = 16.0,
+    ssh_domains = ssh_connections,
+    default_prog = { 'C:\\Program Files\\PowerShell\\7\\pwsh.exe' },
+    font_size = 14.0,
     font =
-    --wezterm.font('Hack Nerd Font Mono', { weight = 'Medium', italic = false })
-    --wezterm.font("Monoid Nerd Font", {weight="Medium", stretch="Normal", style="Italic"})
-    --wezterm.font("Terminess Nerd Font", {weight="Bold", stretch="Normal", style="Italic"})
-        wezterm.font("IosevkaTerm Nerd Font", { weight = "DemiBold", stretch = "Normal", style = "Oblique" }),
-    --wezterm.font("Iosevka Nerd Font", {weight="Medium", stretch="Normal", style="Normal"})
-    --wezterm.font("JetBrainsMonoNL Nerd Font", {weight="Medium", stretch="Normal", style="Normal"})
-    color_scheme = 'Gruvbox Dark (Gogh)',
+    wezterm.font('Hack Nerd Font Mono', { weight = 'Medium', style="Normal" }),
+    --wezterm.font("Monoid Nerd Font", {weight="DemiBold", stretch="Normal", style="Oblique"}),
+    --wezterm.font("Terminess Nerd Font", { weight = "Bold", stretch = "Normal", style = "Normal" }),
+    --wezterm.font("Iosevka Nerd Font", { weight = "Bold", stretch = "Normal", style = "Oblique" }),
+    --wezterm.font("Iosevka Nerd Font", {weight="Medium", stretch="Normal", style="Normal"}),
+    --wezterm.font("JetBrainsMonoNL Nerd Font", {weight="Medium", stretch="Normal", style="Oblique"}),
+    --color_scheme = 'Rosé Pine (base16)',
+    color_scheme = 'rose-pine',
+    --color_scheme = 'Tokyo Night',
     audible_bell = "Disabled",
-    hide_tab_bar_if_only_one_tab = false,
+    hide_tab_bar_if_only_one_tab = true,
     enable_tab_bar = true,
     use_fancy_tab_bar = false,
+	enable_scroll_bar= false,
     tab_bar_at_bottom = true,
-    window_background_opacity = 0.75,
-    --macos_window_background_blur = 25,
+	term = 'xterm-256color',
+	--term = 'wezterm',
+    window_background_opacity = 0.90,
     text_background_opacity = 0.85,
     window_decorations = "RESIZE",
+    --background = "#000000",
     colors = {
-        background = '#000000',
+        background = 'black',
         tab_bar = {
             background = 'black',
             active_tab = {
@@ -118,10 +145,10 @@ return {
             },
         },
 
-        { key = "h", mods = "LEADER", action = act.ActivatePaneDirection("Left") },
-        { key = "j", mods = "LEADER", action = act.ActivatePaneDirection("Down") },
-        { key = "k", mods = "LEADER", action = act.ActivatePaneDirection("Up") },
-        { key = "l", mods = "LEADER", action = act.ActivatePaneDirection("Right") },
+        { key = "h", mods = "ALT", action = act.ActivatePaneDirection("Left") },
+        { key = "j", mods = "ALT", action = act.ActivatePaneDirection("Down") },
+        { key = "k", mods = "ALT", action = act.ActivatePaneDirection("Up") },
+        { key = "l", mods = "ALT", action = act.ActivatePaneDirection("Right") },
 
         { key = "H", mods = "LEADER", action = act { AdjustPaneSize = { "Left", 5 } } },
         { key = "J", mods = "LEADER", action = act { AdjustPaneSize = { "Down", 5 } } },

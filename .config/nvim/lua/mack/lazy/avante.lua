@@ -2,9 +2,10 @@ return {
   "yetone/avante.nvim",
   event = "VeryLazy",
   lazy = false,
-  version = false, -- set this if you want to always pull the latest change
+  version = false, -- set this to "*" if you want to always pull the latest change, false to update on release
   opts = {
-        provider = "openai",
+		provider = "openai"
+    -- add any opts here
   },
   -- if you want to build from source then do `make BUILD_FROM_SOURCE=true`
   build = "make",

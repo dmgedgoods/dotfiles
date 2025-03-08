@@ -28,8 +28,8 @@ sudo tar -C /usr/local -xzf go1.24.0.linux-amd64.tar.gz
 rm go1.24.0.linux-amd64.tar.gz # Remove the downloaded archive
 
 # Configure Go environment
-echo 'export PATH=$PATH:/usr/local/go/bin' >> ~/.bashrc
-source ~/.bashrc
+echo 'export PATH=$PATH:/usr/local/go/bin' >> ~/.zshrc
+source ~/.zshrc
 
 # Oh My Zsh installation
 sh -c "$(curl -fsSL https://raw.githubusercontent.com/ohmyzsh/ohmyzsh/master/tools/install.sh)"

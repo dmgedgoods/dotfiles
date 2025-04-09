@@ -64,7 +64,6 @@ bindsym $mod+Shift+space floating toggle, move position center
 
 # open program in seperate floating window. This is a working list. Add as necessary.
 for_window [class="Thunar"] floating enable, resize set 900 px 600 px, move position center
-for_window [class="Parole Media Player" instance="parole"] floating enable, resize set 900 px 600 px, move position center
 
 # change focus between tiling / floating windows
 bindsym $mod+d focus mode_toggle
@@ -157,10 +156,10 @@ default_border pixel 2
 exec_always --no-startup-id sh ~/.fehbg
 
 # picom - Compositing Manager for Shadows and Opacity
-exec_always --no-startup-id picom -b
+#exec_always --no-startup-id picom -b
 
 # VM Clipboard Fix
-exec_always --no-startup-id ~/.config/i3/clipboard_fix.sh
+#exec_always --no-startup-id ~/.config/i3/clipboard_fix.sh
 
 # keyboard fix
 exec_always --no-startup-id setxkbmap -layout us -option ctrl:swapcaps
@@ -178,20 +177,20 @@ bindsym $mod+Ctrl+Shift+Left resize grow width 10 px or 10 ppt
 bindsym $mod+P exec flameshot gui
 
 # Set monitor - Adjust per display.sh requirements TODO: roll into display script based on $values
-set $mon1 eDP-1
-set $mon2 HDMI-1-0
-set $mon3 DP-1-0.2
+#set $mon1 eDP-1
+#set $mon2 HDMI-1-0
+#set $mon3 DP-1-0.2
 
 # Set workspaces to monitors
-workspace 1 output $mon1
-workspace 4 output $mon2
-workspace 7 output $mon3
-workspace 2 output $mon1
-workspace 5 output $mon2
-workspace 8 output $mon3
-workspace 3 output $mon1
-workspace 6 output $mon2
-workspace 9 output $mon3
+#workspace 1 output $mon1
+#workspace 4 output $mon2
+#workspace 7 output $mon3
+#workspace 2 output $mon1
+#workspace 5 output $mon2
+#workspace 8 output $mon3
+#workspace 3 output $mon1
+#workspace 6 output $mon2
+#workspace 9 output $mon3
 
 # Lets try to control sound
 #bindsym XF86AudioRaiseVolume exec --no-startup-id pactl set-sink-volume @DEFAULT_SINK@ +1% #increase sound volume

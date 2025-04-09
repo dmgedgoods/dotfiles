@@ -1,0 +1,3 @@
+{ ... }: {
+  # NixOS specific configuration here.
+}

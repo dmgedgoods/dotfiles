@@ -12,6 +12,10 @@ end
 vim.opt.rtp:prepend(lazypath)
 
 require("lazy").setup({
-    spec = "mack.lazy",
+    spec = {
+        { import = "mack.lazy" },
+
+        { import = "mack.lazy.blink" },
+    },
     change_detection = { notify = false }
 })

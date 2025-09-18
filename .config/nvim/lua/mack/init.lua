@@ -80,8 +80,7 @@ autocmd("FileType", {
 		vim.opt_local.wrap = true
 		vim.opt_local.linebreak = true
 		vim.b.luasnip_disabled = true
-		-- Disable nvim-cmp completions for LaTeX and Markdown files
-		require("cmp").setup.buffer({ enabled = false })
+
 	end,
 })
 

@@ -56,6 +56,6 @@ vim.keymap.set("n", "<leader><leader>", function()
 	vim.cmd("so")
 end)
 
-vim.keymap.set("n", "<leader>se", "<cmd>e ~/AppData/Local/nvim/lua/mack/set.lua<CR>")
-vim.keymap.set("n", "<leader>re", "<cmd>e ~/AppData/Local/nvim/lua/mack/remap.lua<CR>")
+vim.keymap.set("n", "<leader>se", "<cmd>e ~/.config/nvim/lua/mack/set.lua<CR>")
+vim.keymap.set("n", "<leader>re", "<cmd>e ~/.config/nvim/lua/mack/remap.lua<CR>")
 vim.keymap.set("n", "<leader>we", "<cmd>e ~/.wezterm.lua<CR>")

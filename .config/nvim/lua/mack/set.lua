@@ -43,7 +43,7 @@ opt.fillchars = {
 opt.virtualedit = { "block", "onemore" }
 opt.wrap = false
 opt.linebreak = true
- opt.textwidth = 0
+opt.textwidth = 0
 -- opt.wrapmargin =40
 opt.scrolloff = 8
 opt.sidescrolloff = 40
@@ -93,4 +93,3 @@ opt.gp = "rg"
 
 g.html_indent_autotags = "html,head,body"
 g.markdown_recommended_style = 0
-
